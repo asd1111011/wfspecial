@@ -60,7 +60,8 @@ static const Layout layouts[] = {
 //static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *dmenucmd[] = {"dmenu_run", "-c", "-l", "20" , NULL};
 static const char *termcmd[]  = { "st", NULL };
-
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 
 // custom keys layouts
@@ -74,11 +75,12 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Escape, spawn,          SHCMD("~/.scripts/powermenu")},
+	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_F4,     spawn,          SHCMD("pcmanfm")},
-	{ NULL,                         CK_volumeUp   ,spawn,      SHCMD("amixer sset \'Master\' 5%+; /home/caps/.scripts/updatebar")},
-	{ NULL,                         CK_volumeDown ,spawn,      SHCMD("amixer sset \'Master\' 5%-; /home/caps/.scripts/updatebar")},
-	{ NULL,                         CK_BriUp      ,spawn,      SHCMD("python /home/caps/.scripts/bri.py 0 add;  /home/caps/.scripts/updatebar")},
-	{ NULL,                         CK_BriDown    ,spawn,      SHCMD("python /home/caps/.scripts/bri.py 0 decr;  /home/caps/.scripts/updatebar")},
+	{ 0,                         CK_volumeUp   ,spawn,      SHCMD("amixer sset \'Master\' 5%+; /home/caps/.scripts/updatebar")},
+	{ 0,                         CK_volumeDown ,spawn,      SHCMD("amixer sset \'Master\' 5%-; /home/caps/.scripts/updatebar")},
+	{ 0,                         CK_BriUp      ,spawn,      SHCMD("python /home/caps/.scripts/bri.py 0 add;  /home/caps/.scripts/updatebar")},
+	{ 0,                         CK_BriDown    ,spawn,      SHCMD("python /home/caps/.scripts/bri.py 0 decr;  /home/caps/.scripts/updatebar")},
 	{ MODKEY,                       XK_F2,     spawn,      SHCMD("python /home/caps/.scripts/bri.py 1 add;  /home/caps/.scripts/updatebar")},
 	{ MODKEY,                       XK_F1,     spawn,      SHCMD("python /home/caps/.scripts/bri.py 1 decr;  /home/caps/.scripts/updatebar")},
 	{ OPTIONKEY,                    XK_2,      spawn,          SHCMD("chromium")},
